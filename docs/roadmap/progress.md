@@ -2,17 +2,16 @@
 
 ## Current Position
 
-- Current milestone: M0 — Environment, Terminal, and Git
-- Current learning unit: M0 Unit 8 — Focused commits and milestone branches
-- Status: M0 Unit 7 accepted; ready to begin Unit 8
+- Current milestone: M1 — Requirements and Architecture
+- Current learning unit: M1 Unit 1 — Teacher and student user stories
+- Status: M0 accepted; ready to begin M1 Unit 1
 - Last updated: 2026-07-18
 
 ## Next Learning Unit
 
-Learn how branches name parallel lines of work and how focused commits keep
-unrelated changes separate. Inspect the current `main` branch, create the first
-learning branch, and practice reading branch and commit relationships before
-starting M1.
+Learn how a product idea becomes user stories that describe a user, a goal, and
+the reason the goal matters. Draft the first-version teacher and student stories
+without introducing deferred features or implementation details.
 
 ## Confirmed Environment
 
@@ -199,6 +198,30 @@ the learner's work.
   final M0 unit.
 - Next unit: Learn focused commits and milestone branches.
 
+### 2026-07-18 — M0 Unit 8: Focused Commits and Milestone Branches
+
+- Milestone: M0 — Environment, Terminal, and Git
+- Goal: Understand branches, `HEAD`, remote-tracking branches, upstreams, and
+  focused commit boundaries.
+- Work completed: Pushed the two local M0 commits, inspected the commit graph,
+  and created `learn/m1-requirements-architecture` from the synchronized `main`
+  branch.
+- Concepts learned: A branch is a movable reference to a commit; `HEAD` selects
+  the current branch; `origin/main` is a locally cached remote-tracking
+  reference; uncommitted working-tree and staged changes do not belong to a
+  branch and normally follow a branch switch when they can be applied safely.
+- Important decisions: M1 work uses the dedicated
+  `learn/m1-requirements-architecture` branch; empty milestone branches are not
+  pushed before they contain meaningful work.
+- Tests or checks: Confirmed `main`, `origin/main`, and the new learning branch
+  initially point to `d0ef2fc`; the working tree remained clean after switching.
+- Git commit: The progress update following this unit is its focused
+  documentation change; its hash will be recorded with the next progress
+  update.
+- Remaining questions: Merge, rebase, and conflict handling will be introduced
+  when the project has real divergent changes.
+- Next unit: Write first-version teacher and student user stories.
+
 ## Learning Unit Record Template
 
 Copy this section when a unit is accepted:
@@ -219,6 +242,6 @@ Copy this section when a unit is accepted:
 
 ## Immediate Next Step
 
-Begin M0 Unit 8 by inspecting `HEAD`, `main`, and the current commit graph.
-Create the first milestone branch only after the learner can explain what a
-branch points to and what changes when a branch is created or switched.
+Begin M1 Unit 1 by separating user goals from implementation ideas. The learner
+will draft a small set of teacher and student user stories, and the Agent will
+review whether each story stays inside the agreed first-version scope.
