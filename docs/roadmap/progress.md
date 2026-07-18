@@ -3,24 +3,16 @@
 ## Current Position
 
 - Current milestone: M0 — Environment, Terminal, and Git
-- Current learning unit: Not started
-- Status: Ready to begin
-- Last updated: 2026-07-17
+- Current learning unit: M0 Unit 8 — Focused commits and milestone branches
+- Status: M0 Unit 7 accepted; ready to begin Unit 8
+- Last updated: 2026-07-18
 
 ## Next Learning Unit
 
-Inspect and understand the current development environment:
-
-- terminal and Zsh;
-- PATH and command resolution;
-- Java and the installed JDKs;
-- Node.js and NVM;
-- npm;
-- Git;
-- why Maven Wrapper will be used instead of requiring global Maven.
-
-The first unit should remain read-only until the learner understands which
-executables are currently being selected.
+Learn how branches name parallel lines of work and how focused commits keep
+unrelated changes separate. Inspect the current `main` branch, create the first
+learning branch, and practice reading branch and commit relationships before
+starting M1.
 
 ## Confirmed Environment
 
@@ -75,7 +67,137 @@ the learner's work.
 
 ## Completed Learning Units
 
-None yet.
+### 2026-07-18 — M0 Unit 1: Shell and PATH
+
+- Milestone: M0 — Environment, Terminal, and Git
+- Goal: Understand the terminal, Zsh, processes, environment variables, PATH,
+  and command resolution.
+- Work completed: Inspected `$SHELL`, `$0`, `$$`, `PATH`, `command -v`, and
+  `type -a`; compared temporary and persistent environment changes.
+- Concepts learned: Shell invocation names, process IDs, parent and child
+  process boundaries, PATH order, builtins, functions, external executables,
+  and command-scoped environment assignments.
+- Important decisions: Environment changes remain explicit; no shell startup
+  files were modified.
+- Tests or checks: Traced the selected `node` executable and temporarily
+  changed PATH for one command without changing the current Shell.
+- Git commit: None; this unit was read-only.
+- Remaining questions: Persistent shell configuration will be revisited only
+  when a project requirement needs it.
+- Next unit: Compare NVM-managed Node.js with Homebrew Node.js.
+
+### 2026-07-18 — M0 Unit 2: NVM and Homebrew Node.js
+
+- Milestone: M0 — Environment, Terminal, and Git
+- Goal: Understand how two Node.js installations can coexist and how the Shell
+  chooses between them.
+- Work completed: Inspected the NVM Node.js executable, the Homebrew Node.js
+  symlink, and both versions through explicit paths.
+- Concepts learned: Version-manager directories, Homebrew Cellar paths,
+  symbolic links, regular executable files, and bypassing PATH with an absolute
+  path.
+- Important decisions: CodePulse development uses the NVM-managed Node.js 24;
+  the Homebrew Node.js installation remains available as the external `system`
+  version.
+- Tests or checks: Confirmed NVM Node.js `v24.14.0` and Homebrew Node.js
+  `v25.9.0` execute independently.
+- Git commit: None; this unit was read-only.
+- Remaining questions: None blocking.
+- Next unit: Select and pin Node.js 24 for the project.
+
+### 2026-07-18 — M0 Unit 3: Project Node.js Version
+
+- Milestone: M0 — Environment, Terminal, and Git
+- Goal: Distinguish the personal NVM default from a project-declared Node.js
+  version.
+- Work completed: Inspected NVM aliases, switched between NVM and `system`
+  Node.js, and created `.nvmrc` with `24.14.0`.
+- Concepts learned: NVM aliases, LTS aliases, current-Shell version selection,
+  project version files, and exact versus major-version pinning.
+- Important decisions: CodePulse pins Node.js `24.14.0` in `.nvmrc` for a
+  reproducible learning environment.
+- Tests or checks: `nvm use` read `.nvmrc` and selected Node.js `v24.14.0` with
+  npm `11.9.0`.
+- Git commit: `fd1a3f6` later committed `.nvmrc` together with the related M0
+  Git ignore changes.
+- Remaining questions: Automatic directory-based version switching is deferred
+  because the project does not need extra Shell configuration yet.
+- Next unit: Inspect Java installations and Java selection.
+
+### 2026-07-18 — M0 Unit 4: Java Environment
+
+- Milestone: M0 — Environment, Terminal, and Git
+- Goal: Distinguish the JDK, JRE, JVM, Java launcher, compiler, and `JAVA_HOME`.
+- Work completed: Inspected four installed JDKs and directly executed the Java
+  21 and Java 17 binaries selected by `/usr/libexec/java_home`.
+- Concepts learned: JDK vendor and version, macOS Java discovery, command
+  substitution, environment-variable scope, and the difference between local
+  JDK selection and project requirements.
+- Important decisions: CodePulse targets Java 21; no persistent `JAVA_HOME` is
+  added because macOS already selects Temurin 21 correctly.
+- Tests or checks: Confirmed the default Temurin JDK `21.0.5`, `javac 21.0.5`,
+  and an explicit Temurin JDK `17.0.13` invocation.
+- Git commit: None; this unit was read-only.
+- Remaining questions: Maven's JDK selection will be inspected when a Maven
+  project exists.
+- Next unit: Understand npm and its relationship to Node.js.
+
+### 2026-07-18 — M0 Unit 5: npm Environment
+
+- Milestone: M0 — Environment, Terminal, and Git
+- Goal: Understand how npm relates to Node.js and where global packages belong.
+- Work completed: Inspected the active npm executable, symlink target, shebang,
+  global prefix, and the NVM and Homebrew npm installations.
+- Concepts learned: npm CLI and registry roles, shebang execution through
+  `/usr/bin/env node`, local versus global dependencies, Unix users, groups,
+  and directory permissions.
+- Important decisions: CodePulse will install TypeScript and build tools as
+  project-local dependencies instead of relying on global npm packages.
+- Tests or checks: Confirmed npm `11.9.0` executes through NVM Node.js 24 and
+  uses the NVM version directory as its global prefix.
+- Git commit: None; this unit was read-only.
+- Remaining questions: `package.json`, lockfiles, and local dependency installs
+  are deferred to the TypeScript milestone.
+- Next unit: Understand Maven and Maven Wrapper.
+
+### 2026-07-18 — M0 Unit 6: Maven Wrapper
+
+- Milestone: M0 — Environment, Terminal, and Git
+- Goal: Understand why CodePulse will use Maven Wrapper without requiring a
+  global Maven installation.
+- Work completed: Verified that no global `mvn` command exists and compared the
+  responsibilities of the JDK, Maven Wrapper, and `pom.xml`.
+- Concepts learned: Build tools, dependency management, Wrapper-based tool
+  pinning, command arguments, process exit status, and Shell control operators.
+- Important decisions: CodePulse uses Maven rather than Gradle and will add the
+  Maven Wrapper with the generated Java project instead of installing global
+  Maven now.
+- Tests or checks: `command -v java` returned status `0`; `command -v mvn`
+  returned status `1`.
+- Git commit: None; this unit was read-only.
+- Remaining questions: Maven lifecycle phases, tests, and packaging are deferred
+  to M3 and M4.
+- Next unit: Practice Git status, diffs, staging, commits, and ignore rules.
+
+### 2026-07-18 — M0 Unit 7: Git Status and Ignore Rules
+
+- Milestone: M0 — Environment, Terminal, and Git
+- Goal: Understand the working tree, staging area, commits, and shared versus
+  local ignore rules.
+- Work completed: Moved the personal `AGENTS.md` rule to `.git/info/exclude`,
+  configured a global `.DS_Store` ignore, replaced the broad `*.jar` rule with
+  `target/`, staged selected files, reviewed the staged diff, and committed it.
+- Concepts learned: Tracked, untracked, ignored, modified, and added states;
+  `.gitignore`, `.git/info/exclude`, and global ignore scope; explicit staging;
+  staged diffs; exit statuses; and commit inspection.
+- Important decisions: Shared project rules ignore Maven build output, while
+  personal Agent instructions and operating-system files remain local rules.
+- Tests or checks: `git check-ignore` identified each rule source;
+  `git diff --staged --check` passed; the working tree was clean after commit.
+- Git commit: `fd1a3f6` — `Pin Node version and refine ignored files`.
+- Remaining questions: Branch naming and commit relationships remain for the
+  final M0 unit.
+- Next unit: Learn focused commits and milestone branches.
 
 ## Learning Unit Record Template
 
@@ -97,6 +219,6 @@ Copy this section when a unit is accepted:
 
 ## Immediate Next Step
 
-Begin M0 Unit 1 by tracing how the shell chooses `java`, `node`, `npm`, and
-`git`. The learner should run and interpret the commands with guidance rather
-than having the environment changed automatically.
+Begin M0 Unit 8 by inspecting `HEAD`, `main`, and the current commit graph.
+Create the first milestone branch only after the learner can explain what a
+branch points to and what changes when a branch is created or switched.
