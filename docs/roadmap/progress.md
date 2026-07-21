@@ -3,15 +3,15 @@
 ## Current Position
 
 - Current milestone: M1 — Requirements and Architecture
-- Current learning unit: M1 Unit 2 — Product goals and non-goals
-- Status: M1 Unit 1 accepted; ready to begin Unit 2
+- Current learning unit: M1 Unit 3 — Classroom joining and leaving flows
+- Status: M1 Unit 2 accepted; ready to begin Unit 3
 - Last updated: 2026-07-21
 
 ## Next Learning Unit
 
-Separate the product outcome from implementation ideas. Write a concise product
-goal and explicit non-goals that prevent CodePulse from expanding into an
-online IDE, assignment platform, automatic judge, or surveillance system.
+Define the observable classroom flow for teacher startup, student joining,
+workspace selection, active synchronization, student leaving, and classroom
+closure. Use a tabletop walkthrough before choosing APIs or implementation.
 
 ## Confirmed Environment
 
@@ -238,13 +238,35 @@ the learner's work.
 - Tests or checks: Confirmed the stories stay inside the local-network first
   version and derived an observable functional requirement from the teacher
   attention story.
-- Git commit: The user-story document and this progress update form the unit's
-  focused documentation change; its hash will be recorded with the next
-  progress update.
+- Git commit: `38ceae1` — `Define initial teacher and student user stories`.
 - Remaining questions: Exact meanings of code-change time, synchronization
   time, and dashboard-display time must be defined in later requirements and
   acceptance criteria.
 - Next unit: Write product goals and non-goals.
+
+### 2026-07-21 — M1 Unit 2: Product Goals and Non-goals
+
+- Milestone: M1 — Requirements and Architecture
+- Goal: State the classroom problem CodePulse solves and explicitly separate
+  rejected product directions from undecided future candidates.
+- Work completed: Wrote a concise Chinese product goal and documented non-goals
+  for an online IDE, assignment submission, real-time collaborative editing,
+  automatic assessment or diagnosis, and after-class monitoring.
+- Concepts learned: Product goal specificity, non-goals, first-version scope,
+  deferred capabilities, future candidates, product value versus implementation
+  cost, and the role of written boundaries in preventing scope expansion.
+- Important decisions: Students retain their local development environment and
+  control synchronization; teachers observe but do not directly edit student
+  code; limited classroom-stage snapshots remain a future candidate rather
+  than a commitment, while after-class monitoring remains a non-goal.
+- Tests or checks: Reviewed each boundary against the first-version classroom
+  purpose and verified that candidate language does not promise implementation.
+- Git commit: The product-scope document and this progress update form the
+  unit's focused documentation change; its hash will be recorded with the next
+  progress update.
+- Remaining questions: Snapshot access, retention, deletion, and consent require
+  a separate decision if the candidate is reconsidered later.
+- Next unit: Define classroom joining and leaving flows.
 
 ## Learning Unit Record Template
 
@@ -266,6 +288,7 @@ Copy this section when a unit is accepted:
 
 ## Immediate Next Step
 
-Begin M1 Unit 2 by writing one concise product goal and explicit non-goals. The
-learner will distinguish the problem CodePulse solves from attractive but
-deferred or intentionally excluded product directions.
+Begin M1 Unit 3 with a tabletop walkthrough of one classroom session. The
+learner will decide what the teacher and student can observe and do at each
+transition, while the Agent records ambiguities and failure questions without
+introducing implementation details.
