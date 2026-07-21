@@ -3,15 +3,15 @@
 ## Current Position
 
 - Current milestone: M1 — Requirements and Architecture
-- Current learning unit: M1 Unit 3 — Classroom joining and leaving flows
-- Status: M1 Unit 2 accepted; ready to begin Unit 3
+- Current learning unit: M1 Unit 4 — Privacy and file synchronization boundary
+- Status: M1 Unit 3 accepted; ready to begin Unit 4
 - Last updated: 2026-07-21
 
 ## Next Learning Unit
 
-Define the observable classroom flow for teacher startup, student joining,
-workspace selection, active synchronization, student leaving, and classroom
-closure. Use a tabletop walkthrough before choosing APIs or implementation.
+Define exactly which files and activity facts may leave the student's computer,
+which data must never be sent, and how workspace, file type, path, size, and
+sensitive-file checks combine before synchronization.
 
 ## Confirmed Environment
 
@@ -261,12 +261,39 @@ the learner's work.
   than a commitment, while after-class monitoring remains a non-goal.
 - Tests or checks: Reviewed each boundary against the first-version classroom
   purpose and verified that candidate language does not promise implementation.
-- Git commit: The product-scope document and this progress update form the
-  unit's focused documentation change; its hash will be recorded with the next
-  progress update.
+- Git commit: `551fb2c` — `Define CodePulse product scope`.
 - Remaining questions: Snapshot access, retention, deletion, and consent require
   a separate decision if the candidate is reconsidered later.
 - Next unit: Define classroom joining and leaving flows.
+
+### 2026-07-21 — M1 Unit 3: Classroom Joining and Leaving Flows
+
+- Milestone: M1 — Requirements and Architecture
+- Goal: Define the user-visible lifecycle of one temporary classroom before
+  selecting protocols or implementation details.
+- Work completed: Used a tabletop walkthrough to define classroom creation,
+  joining consent, workspace selection, duplicate display names, continuous
+  synchronization, heartbeat timeout, automatic reconnection, voluntary
+  leaving, classroom closure, export, and deletion behavior.
+- Concepts learned: User flow versus user story, lightweight use cases, session
+  identity, display names versus participant identifiers, state transitions,
+  heartbeat-based failure detection, reconnect repair with complete snapshots,
+  and data-loss-safe export behavior.
+- Important decisions: Opening a join URL does not start synchronization;
+  students explicitly confirm and select a workspace; duplicate names are
+  allowed but disambiguated; offline students may reconnect automatically;
+  voluntary leaving does not delete previously synchronized code; export
+  failure never triggers automatic data deletion.
+- Tests or checks: Walked through normal joining, duplicate names, ten-second
+  network loss, reconnect after classroom closure, voluntary leaving, and
+  export failure scenarios.
+- Git commit: The classroom-lifecycle document and this progress update form the
+  unit's focused documentation change; its hash will be recorded with the next
+  progress update.
+- Remaining questions: URL protocol, join credential design, duplicate-label
+  presentation, export paths, and timing parameters remain open for later
+  architecture and acceptance work.
+- Next unit: Define the privacy and file synchronization boundary.
 
 ## Learning Unit Record Template
 
@@ -288,7 +315,6 @@ Copy this section when a unit is accepted:
 
 ## Immediate Next Step
 
-Begin M1 Unit 3 with a tabletop walkthrough of one classroom session. The
-learner will decide what the teacher and student can observe and do at each
-transition, while the Agent records ambiguities and failure questions without
-introducing implementation details.
+Begin M1 Unit 4 by classifying sample workspace files as allowed, rejected, or
+requiring an explicit rule. The learner will make the privacy decisions, and the
+Agent will challenge path, secret, binary, size, and workspace-boundary cases.
