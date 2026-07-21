@@ -3,15 +3,15 @@
 ## Current Position
 
 - Current milestone: M1 — Requirements and Architecture
-- Current learning unit: M1 Unit 4 — Privacy and file synchronization boundary
-- Status: M1 Unit 3 accepted; ready to begin Unit 4
+- Current learning unit: M1 Unit 5 — System context and code-update sequence
+- Status: M1 Unit 4 accepted; ready to begin Unit 5
 - Last updated: 2026-07-21
 
 ## Next Learning Unit
 
-Define exactly which files and activity facts may leave the student's computer,
-which data must never be sent, and how workspace, file type, path, size, and
-sensitive-file checks combine before synchronization.
+Draw a system context diagram and one code-update sequence. Identify the three
+applications, the teacher and student actors, the direction of data movement,
+and where synchronization and authorization decisions belong.
 
 ## Confirmed Environment
 
@@ -287,13 +287,41 @@ the learner's work.
 - Tests or checks: Walked through normal joining, duplicate names, ten-second
   network loss, reconnect after classroom closure, voluntary leaving, and
   export failure scenarios.
-- Git commit: The classroom-lifecycle document and this progress update form the
-  unit's focused documentation change; its hash will be recorded with the next
-  progress update.
+- Git commit: `977bad0` — `Define classroom joining and leaving flows`.
 - Remaining questions: URL protocol, join credential design, duplicate-label
   presentation, export paths, and timing parameters remain open for later
   architecture and acceptance work.
 - Next unit: Define the privacy and file synchronization boundary.
+
+### 2026-07-21 — M1 Unit 4: Privacy and File Synchronization Boundary
+
+- Milestone: M1 — Requirements and Architecture
+- Goal: Define which files may leave a student's computer and which safety rules
+  cannot be weakened by classroom configuration.
+- Work completed: Classified representative workspace files and documented
+  teacher allowlist configuration, student workspace consent, fixed path and
+  file checks, sensitive-file categories, size limits, rejection feedback, and
+  the limits of secret detection.
+- Concepts learned: Default-deny synchronization, layered checks, configurable
+  product rules versus fixed safety rules, canonical path boundaries, symbolic
+  link escape, binary and size checks, sensitive-file filtering, and the risk of
+  promising unreliable secret scanning.
+- Important decisions: Teachers configure extension allowlists before creating
+  a classroom and cannot silently expand them afterward; students select one
+  workspace folder; joining does not upload the whole workspace; all symbolic
+  links are rejected; the initial text-file limit is `1 MiB`; arbitrary secrets
+  inside ordinary source files are disclosed as a limitation rather than
+  claimed to be fully detectable.
+- Tests or checks: Classified allowed source and Markdown files, disallowed
+  extensions, `.env`, Git metadata, build output, workspace-external paths,
+  symbolic links, oversized source, and source containing an API key.
+- Git commit: The file-sync boundary, lifecycle update, and this progress update
+  form the unit's focused documentation change; its hash will be recorded with
+  the next progress update.
+- Remaining questions: Exact sensitive-path rules, text detection, extension
+  normalization, unsaved documents, rejection UI, and the tested size limit
+  remain for implementation and acceptance work.
+- Next unit: Draw the system context and one code-update sequence.
 
 ## Learning Unit Record Template
 
@@ -315,6 +343,6 @@ Copy this section when a unit is accepted:
 
 ## Immediate Next Step
 
-Begin M1 Unit 4 by classifying sample workspace files as allowed, rejected, or
-requiring an explicit rule. The learner will make the privacy decisions, and the
-Agent will challenge path, secret, binary, size, and workspace-boundary cases.
+Begin M1 Unit 5 by drawing the system boundary before drawing internal classes.
+The learner will identify actors, applications, and data movement; the Agent
+will challenge misplaced responsibilities and implementation detail.
