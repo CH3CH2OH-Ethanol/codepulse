@@ -3,15 +3,15 @@
 ## Current Position
 
 - Current milestone: M1 — Requirements and Architecture
-- Current learning unit: M1 Unit 1 — Teacher and student user stories
-- Status: M0 accepted; ready to begin M1 Unit 1
-- Last updated: 2026-07-18
+- Current learning unit: M1 Unit 2 — Product goals and non-goals
+- Status: M1 Unit 1 accepted; ready to begin Unit 2
+- Last updated: 2026-07-21
 
 ## Next Learning Unit
 
-Learn how a product idea becomes user stories that describe a user, a goal, and
-the reason the goal matters. Draft the first-version teacher and student stories
-without introducing deferred features or implementation details.
+Separate the product outcome from implementation ideas. Write a concise product
+goal and explicit non-goals that prevent CodePulse from expanding into an
+online IDE, assignment platform, automatic judge, or surveillance system.
 
 ## Confirmed Environment
 
@@ -215,12 +215,36 @@ the learner's work.
   pushed before they contain meaningful work.
 - Tests or checks: Confirmed `main`, `origin/main`, and the new learning branch
   initially point to `d0ef2fc`; the working tree remained clean after switching.
-- Git commit: The progress update following this unit is its focused
-  documentation change; its hash will be recorded with the next progress
-  update.
+- Git commit: `13e318c` — `Complete M0 environment and Git milestone`.
 - Remaining questions: Merge, rebase, and conflict handling will be introduced
   when the project has real divergent changes.
 - Next unit: Write first-version teacher and student user stories.
+
+### 2026-07-21 — M1 Unit 1: Teacher and Student User Stories
+
+- Milestone: M1 — Requirements and Architecture
+- Goal: Express first-version classroom needs from teacher and student
+  perspectives without prematurely choosing implementation details.
+- Work completed: Drafted and reviewed two teacher stories and two student
+  stories in Chinese; separated classroom overview, selected-student context,
+  low-friction help, and student synchronization control.
+- Concepts learned: Role-goal-value story structure, one primary goal per story,
+  user value versus implementation, stakeholder-specific value, story
+  identifiers, and the relationship between user stories, requirements, and
+  acceptance criteria.
+- Important decisions: Requirement documents may use Chinese; the first version
+  shows a classroom overview before selected-student code; synchronization is
+  continuous only after explicit student joining and workspace selection.
+- Tests or checks: Confirmed the stories stay inside the local-network first
+  version and derived an observable functional requirement from the teacher
+  attention story.
+- Git commit: The user-story document and this progress update form the unit's
+  focused documentation change; its hash will be recorded with the next
+  progress update.
+- Remaining questions: Exact meanings of code-change time, synchronization
+  time, and dashboard-display time must be defined in later requirements and
+  acceptance criteria.
+- Next unit: Write product goals and non-goals.
 
 ## Learning Unit Record Template
 
@@ -242,6 +266,6 @@ Copy this section when a unit is accepted:
 
 ## Immediate Next Step
 
-Begin M1 Unit 1 by separating user goals from implementation ideas. The learner
-will draft a small set of teacher and student user stories, and the Agent will
-review whether each story stays inside the agreed first-version scope.
+Begin M1 Unit 2 by writing one concise product goal and explicit non-goals. The
+learner will distinguish the problem CodePulse solves from attractive but
+deferred or intentionally excluded product directions.
