@@ -3,14 +3,14 @@
 ## Current Position
 
 - Current milestone: M1 — Requirements and Architecture
-- Current learning unit: M1 Unit 7 — Initial acceptance criteria
-- Status: M1 Unit 6 accepted; ready to begin Unit 7
-- Last updated: 2026-07-21
+- Current learning unit: M1 Unit 8 — Architecture Decision Records
+- Status: M1 Unit 7 accepted; ready to begin Unit 8
+- Last updated: 2026-07-22
 
 ## Next Learning Unit
 
-Convert the agreed first-version behavior into observable acceptance criteria
-without prescribing internal classes, APIs, or test frameworks.
+Record the first important architecture choices, alternatives, consequences,
+and unresolved risks without beginning implementation.
 
 ## Confirmed Environment
 
@@ -375,6 +375,39 @@ the learner's work.
   transport error codes remain for implementation or later ADRs.
 - Next unit: Write initial acceptance criteria.
 
+### 2026-07-22 — M1 Unit 7: Requirements and Acceptance Baseline
+
+- Milestone: M1 — Requirements and Architecture
+- Goal: Establish a traceable first-version requirement baseline and define
+  representative observable acceptance scenarios without prescribing internal
+  classes, APIs, or test frameworks.
+- Work completed: Added a shared glossary; consolidated the agreed behavior into
+  53 core requirements and system constraints; wrote 22 Given/When/Then
+  scenarios covering 42 high-value requirements; and aligned the lifecycle,
+  synchronization boundary, failure behavior, user stories, product scope,
+  learning plan, and code-update sequence with the resulting terminology.
+- Concepts learned: Requirements versus acceptance criteria versus design;
+  traceability from product intent to requirements and tests; representative
+  risk coverage; Given/When/Then structure; stable requirement identifiers; and
+  the danger of turning every condition or example into a separate requirement.
+- Important decisions: The catalog records independent product and safety
+  commitments rather than every branch; examples and observable branches belong
+  in acceptance criteria; implementation mechanisms and adjustable parameters
+  belong in design or ADRs; not every architecture constraint needs an interface
+  scenario; and AI may draft mechanical documentation while the learner remains
+  responsible for product decisions and review.
+- Tests or checks: Confirmed 53 unique requirement and constraint identifiers,
+  22 unique acceptance-scenario identifiers, valid requirement references,
+  complete Given/When/Then structure, valid local Markdown links, no trailing
+  whitespace, and a passing `git diff --check`.
+- Git commit: `07983e0` — `Define requirements and acceptance baseline`.
+- Remaining questions: Teacher authorization mechanism, HTTP error model,
+  sensitive-path rules, text-file detection, extension normalization, retry and
+  heartbeat parameters, export-name sanitization, and possible future local
+  persistence remain for ADRs, implementation design, or experiments.
+- Next unit: Write ADRs for Spring MVC, Maven, polling, complete snapshots,
+  in-memory storage, and teacher/student authorization boundaries.
+
 ## Learning Unit Record Template
 
 Copy this section when a unit is accepted:
@@ -395,6 +428,5 @@ Copy this section when a unit is accepted:
 
 ## Immediate Next Step
 
-Begin M1 Unit 7 by converting selected product requirements into Given/When/Then
-acceptance examples. The learner will identify observable outcomes; the Agent
-will challenge vague, untestable, or implementation-specific wording.
+Begin M1 Unit 8 by learning the purpose and structure of an Architecture
+Decision Record, then write the first ADR for the server-side programming model.
