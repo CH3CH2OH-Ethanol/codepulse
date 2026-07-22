@@ -3,15 +3,14 @@
 ## Current Position
 
 - Current milestone: M1 — Requirements and Architecture
-- Current learning unit: M1 Unit 5 — System context and code-update sequence
-- Status: M1 Unit 4 accepted; ready to begin Unit 5
+- Current learning unit: M1 Unit 7 — Initial acceptance criteria
+- Status: M1 Unit 6 accepted; ready to begin Unit 7
 - Last updated: 2026-07-21
 
 ## Next Learning Unit
 
-Draw a system context diagram and one code-update sequence. Identify the three
-applications, the teacher and student actors, the direction of data movement,
-and where synchronization and authorization decisions belong.
+Convert the agreed first-version behavior into observable acceptance criteria
+without prescribing internal classes, APIs, or test frameworks.
 
 ## Confirmed Environment
 
@@ -315,13 +314,66 @@ the learner's work.
 - Tests or checks: Classified allowed source and Markdown files, disallowed
   extensions, `.env`, Git metadata, build output, workspace-external paths,
   symbolic links, oversized source, and source containing an API key.
-- Git commit: The file-sync boundary, lifecycle update, and this progress update
-  form the unit's focused documentation change; its hash will be recorded with
-  the next progress update.
+- Git commit: `a8ca71a` — `Define file synchronization boundaries`.
 - Remaining questions: Exact sensitive-path rules, text detection, extension
   normalization, unsaved documents, rejection UI, and the tested size limit
   remain for implementation and acceptance work.
 - Next unit: Draw the system context and one code-update sequence.
+
+### 2026-07-21 — M1 Unit 5: System Context and Code-update Sequence
+
+- Milestone: M1 — Requirements and Architecture
+- Goal: Describe CodePulse from outside the system boundary and trace one
+  successful code update without introducing internal classes or protocols.
+- Work completed: Drew a Mermaid system-context diagram containing the student,
+  teacher, VS Code, selected local workspace, and CodePulse system; drew a
+  sequence from local file modification through extension filtering, server
+  storage, synchronization feedback, and teacher display.
+- Concepts learned: System boundary, external actor, external system, data-flow
+  direction, sequence-diagram lifelines, calls versus responses, message
+  causality, and the difference between structural and temporal views.
+- Important decisions: VS Code and the selected workspace remain outside the
+  CodePulse system boundary; file checks happen in the extension before
+  transmission; the teacher Dashboard reads synchronized state from the teacher
+  server rather than communicating directly with student extensions; the
+  successful-flow diagram stays independent of the later polling ADR.
+- Tests or checks: Reviewed every context-diagram arrow against its owner and
+  data direction; corrected the Mermaid message syntax and added the missing
+  server acknowledgement before displaying synchronization success.
+- Git commit: `39d7959` — `Graphs for system context and code update sequence`.
+- Remaining questions: Internal application boundaries, transport APIs, polling
+  timing, authentication, and failure branches remain for later units and ADRs.
+- Next unit: Define failure behavior for disconnection, stale updates,
+  unsupported files, and teacher-server restart.
+
+### 2026-07-21 — M1 Unit 6: Failure Behavior
+
+- Milestone: M1 — Requirements and Architecture
+- Goal: Define user-visible and state-preserving behavior when communication,
+  updates, file checks, or the single in-memory server fail.
+- Work completed: Defined the student plugin state model, heartbeat timeout and
+  reconnection behavior, stale and duplicate snapshot handling, local and
+  server-side file rejection, failed leave notification, and teacher-server
+  restart behavior; corrected related lifecycle and privacy requirements.
+- Concepts learned: Failure detection versus known state, network partitions,
+  transport failure versus authoritative application response, idempotency,
+  monotonic per-file versions, defense in depth, single point of failure,
+  durability, and the limits of best-effort notification.
+- Important decisions: Missing responses leave classroom state unknown; offline
+  students retain visibly stale last-known code; older snapshots cannot replace
+  newer ones and duplicate versions are idempotent; teachers receive safe error
+  categories but no rejected paths or contents; local leave takes effect even
+  if the server never receives its notification; an in-memory classroom cannot
+  recover after the teacher server restarts.
+- Tests or checks: Walked through network loss, delayed and duplicate requests,
+  rejected files, leaving while disconnected, explicit classroom termination,
+  and server restart; checked requirement-document consistency and Markdown
+  whitespace with `git diff --check`.
+- Git commit: `06a3b2a` — `Define failure behavior and recovery limits`.
+- Remaining questions: Retry backoff, version persistence across plugin restart,
+  error-event rate limits, termination markers, local server persistence, and
+  transport error codes remain for implementation or later ADRs.
+- Next unit: Write initial acceptance criteria.
 
 ## Learning Unit Record Template
 
@@ -343,6 +395,6 @@ Copy this section when a unit is accepted:
 
 ## Immediate Next Step
 
-Begin M1 Unit 5 by drawing the system boundary before drawing internal classes.
-The learner will identify actors, applications, and data movement; the Agent
-will challenge misplaced responsibilities and implementation detail.
+Begin M1 Unit 7 by converting selected product requirements into Given/When/Then
+acceptance examples. The learner will identify observable outcomes; the Agent
+will challenge vague, untestable, or implementation-specific wording.

@@ -11,7 +11,7 @@ sequenceDiagram
     participant dashboard as 教师 Dashboard
     actor teacher as 教师
 
-    student->>vscode: 修改并保存本地文件
+    student->>vscode: 修改文件内容
     vscode->>extension: 通知文件内容发生变化
     extension->>extension: 检查文件是否符合边界
     extension->>server: 发送符合边界的文件快照

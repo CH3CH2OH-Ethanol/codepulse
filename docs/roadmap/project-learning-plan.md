@@ -61,17 +61,20 @@ The system is not:
 - The student explicitly joins a classroom and chooses the classroom workspace.
 - The student always sees that synchronization is active and can leave.
 - The teacher configures an allowlist of file extensions for the classroom.
-- The teacher sees a student list and one selected student's active file.
+- The teacher sees a student list and one selected student's current
+  synchronized file.
 - The dashboard separately displays:
-  - the last time code content changed;
-  - the last time an observable editor interaction occurred.
+  - the last time the server accepted a code snapshot;
+  - the last time the server received a text-edit activity event.
 - The dashboard highlights students after a configurable inactivity threshold,
   initially five minutes.
 - The highlight is only evidence for teacher attention; it is not an automatic
   conclusion.
 - Classroom data is held in memory by default.
-- The teacher may end the classroom and export the final version of every file
-  that appeared during the session.
+- The teacher may end the classroom and download a ZIP containing the final
+  accepted version of every file that appeared during the session. In-memory
+  classroom data remains until the teacher confirms the download was saved or
+  explicitly abandons it.
 - The system does not preserve a full edit history.
 
 ### 3.3 Deferred Capabilities
@@ -91,6 +94,7 @@ has been learned, implemented, and tested:
 - character-level differential synchronization;
 - editing history and playback;
 - automated stuck-state classification.
+- direct directory export through browser file-system access.
 
 ## 4. Architecture Baseline
 
@@ -167,15 +171,16 @@ a later snapshot to repair an earlier lost or delayed update.
 5. Draw the system context and one code-update sequence.
 6. Define failure behavior for disconnection, stale updates, unsupported files,
    and server restart.
-7. Write initial acceptance criteria.
-8. Write ADRs for Spring MVC, Maven, polling, complete snapshots, and in-memory
-   storage.
+7. Establish a traceable requirement catalog and write initial acceptance
+   criteria.
+8. Write ADRs for Spring MVC, Maven, polling, complete snapshots, in-memory
+   storage, and teacher/student authorization boundaries.
 
 ### Acceptance
 
 - Another person can explain the first version without relying on chat history.
-- Important terms such as activity, inactivity, online, active file, and final
-  snapshot have precise definitions.
+- Important terms such as activity, inactivity, online, current synchronized
+  file, and final snapshot have precise definitions.
 - Every major technology choice records alternatives and consequences.
 
 ## M2: TypeScript Foundations Through Project Exercises
@@ -296,23 +301,25 @@ a later snapshot to repair an earlier lost or delayed update.
 3. Add an explicit “join classroom” command.
 4. Let the student choose the classroom workspace.
 5. Store the temporary token with `SecretStorage`.
-6. Observe active editor changes, text document changes, selections, and cursor
-   activity.
-7. Distinguish code modification from editor interaction.
+6. Observe the active editor and text document changes without treating cursor,
+   selection, or file-focus changes as editing activity.
+7. Send one eligible initial active-file snapshot after explicit consent.
 8. Apply extension allowlists, sensitive-file filters, relative paths, text-only
    checks, and size limits.
 9. Debounce edits and limit transmission frequency.
-10. Add monotonically increasing client sequence numbers.
-11. Send HTTP requests and handle timeout, retry, and reconnection.
-12. Display persistent synchronization status and allow the student to leave.
-13. Test pure logic separately from VS Code API integration.
-14. Package the extension as a VSIX.
+10. Add persistent monotonically increasing per-file snapshot versions.
+11. Keep one latest pending snapshot per changed file during disconnection.
+12. Send HTTP requests and handle timeout, jittered backoff, and reconnection.
+13. Require renewed confirmation after an extension-process restart.
+14. Display persistent synchronization status and allow the student to leave.
+15. Test pure logic separately from VS Code API integration.
+16. Package the extension as a VSIX.
 
 ### Acceptance
 
 - Files outside the selected workspace cannot be transmitted.
 - Rejected files provide a visible reason instead of failing silently.
-- A reconnect sends a fresh current snapshot.
+- A reconnect sends the latest pending snapshot for every changed eligible file.
 - Disposables and timers are cleaned up when synchronization stops.
 
 ## M6: Teacher Dashboard with Plain TypeScript
@@ -330,19 +337,21 @@ a later snapshot to repair an earlier lost or delayed update.
 3. Fetch classroom overview data.
 4. Model loading, success, empty, stale, and error states.
 5. Render a student list.
-6. Select one student and request the active file.
+6. Select one student and request the current synchronized file.
 7. Render code as text, never executable HTML.
-8. Display the two activity timestamps independently.
-9. Calculate and display the five-minute attention highlight.
-10. Poll once per second and avoid overlapping requests.
-11. Separate network access, application state, and DOM rendering.
-12. Test sorting, time formatting, and status conversion with Vitest.
-13. Build static assets for Spring Boot to serve.
+8. Copy the currently displayed single-file code snapshot with clear success and
+   failure feedback.
+9. Display code synchronization and editing-activity times independently.
+10. Calculate and display the five-minute attention highlight.
+11. Poll once per second and avoid overlapping requests.
+12. Separate network access, application state, and DOM rendering.
+13. Test sorting, time formatting, and status conversion with Vitest.
+14. Build static assets for Spring Boot to serve.
 
 ### Acceptance
 
-- The teacher can identify offline and inactive students and inspect one active
-  file.
+- The teacher can identify offline and inactive students and inspect one current
+  synchronized file.
 - Student-controlled text cannot become executable HTML.
 - Temporary network errors do not destroy the last known classroom view.
 
@@ -467,4 +476,3 @@ A unit is complete when:
 - the change is reviewed;
 - the Git commit contains only the unit's work;
 - the next unit and any remaining questions are recorded.
-
