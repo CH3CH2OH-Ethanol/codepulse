@@ -2,15 +2,15 @@
 
 ## Current Position
 
-- Current milestone: M1 — Requirements and Architecture
-- Current learning unit: M1 Unit 8 — Architecture Decision Records
-- Status: M1 Unit 7 accepted; ready to begin Unit 8
-- Last updated: 2026-07-22
+- Current milestone: M2 — TypeScript Foundations Through Project Exercises
+- Current learning unit: M2 Unit 1 — JavaScript values and control flow
+- Status: M1 accepted; ready to begin M2 Unit 1
+- Last updated: 2026-07-23
 
 ## Next Learning Unit
 
-Record the first important architecture choices, alternatives, consequences,
-and unresolved risks without beginning implementation.
+Learn the JavaScript runtime concepts underneath TypeScript through small,
+project-related exercises before introducing static types.
 
 ## Confirmed Environment
 
@@ -408,6 +408,40 @@ the learner's work.
 - Next unit: Write ADRs for Spring MVC, Maven, polling, complete snapshots,
   in-memory storage, and teacher/student authorization boundaries.
 
+### 2026-07-23 — M1 Unit 8: Architecture Decision Records
+
+- Milestone: M1 — Requirements and Architecture
+- Goal: Record the important first-version technology and architecture choices,
+  including alternatives, accepted disadvantages, and conditions for later
+  reconsideration.
+- Work completed: Wrote seven ADRs covering Spring Boot with Spring MVC, Maven
+  with Maven Wrapper, Dashboard short polling, complete file snapshots,
+  in-memory classroom state, scoped opaque credentials, and the restriction of
+  ordinary HTTP to non-sensitive learning prototypes. Updated the requirement
+  baseline when the decisions exposed missing latency, memory-capacity,
+  authorization, and transport-security boundaries.
+- Concepts learned: Architecture Decision Records, decision drivers,
+  alternatives, positive and negative consequences, revisit conditions,
+  request-response versus reactive models, build-tool trade-offs, snapshot
+  recovery, volatile versus durable storage, authentication versus
+  authorization, bearer credentials, least privilege, and transport security.
+- Important decisions: The server uses Spring Boot with Spring MVC and Maven;
+  the Dashboard begins with short polling; code synchronization sends complete
+  per-file snapshots; classroom state stays in bounded process memory; joining,
+  participant submission, and teacher management use separate credentials; and
+  HTTP integration builds cannot process real student code until encrypted
+  transport and teacher-server identity validation are implemented.
+- Tests or checks: Confirmed unique requirement and acceptance identifiers,
+  valid traceability references, complete Given/When/Then structure, valid local
+  Markdown links, catalog table structure, and a passing `git diff --check`.
+- Git commit: `631ce01` — `Record initial architecture decisions`.
+- Remaining questions: Concrete Spring and Maven versions, polling interval,
+  debounce timing, memory-capacity defaults, HTTP API and error model, sensitive
+  path rules, and the classroom-ready transport-security mechanism remain for
+  implementation units, experiments, or a later replacing ADR.
+- Next unit: Begin JavaScript and TypeScript foundations with values, variables,
+  conditions, loops, functions, objects, and arrays.
+
 ## Learning Unit Record Template
 
 Copy this section when a unit is accepted:
@@ -428,5 +462,5 @@ Copy this section when a unit is accepted:
 
 ## Immediate Next Step
 
-Begin M1 Unit 8 by learning the purpose and structure of an Architecture
-Decision Record, then write the first ADR for the server-side programming model.
+Begin M2 Unit 1 with JavaScript runtime values and control flow. The learner
+will run and explain small examples before TypeScript types are introduced.
