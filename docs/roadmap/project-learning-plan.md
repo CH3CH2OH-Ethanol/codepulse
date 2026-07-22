@@ -76,6 +76,9 @@ The system is not:
   classroom data remains until the teacher confirms the download was saved or
   explicitly abandons it.
 - The system does not preserve a full edit history.
+- HTTP is permitted only for controlled integration tests using synthetic,
+  non-sensitive code. A classroom-ready release requires verified transport
+  encryption and teacher-server identity validation.
 
 ### 3.3 Deferred Capabilities
 
@@ -95,6 +98,8 @@ has been learned, implemented, and tested:
 - editing history and playback;
 - automated stuck-state classification.
 - direct directory export through browser file-system access.
+- security hardening beyond the classroom-ready transport minimum, including
+  controlled traffic inspection, abuse testing, fuzzing, and attack simulation.
 
 ## 4. Architecture Baseline
 
@@ -375,6 +380,8 @@ a later snapshot to repair an earlier lost or delayed update.
 8. Package the dashboard inside the executable Spring Boot JAR.
 9. Package and install the VSIX.
 10. Write a classroom runbook and troubleshooting guide.
+11. Keep HTTP integration builds marked as test-only until a later transport
+    security ADR defines and verifies the classroom-ready mechanism.
 
 ### Initial timing targets
 
